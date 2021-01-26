@@ -267,9 +267,15 @@ Public Function GetDate(Optional SelectedDate As Date = 0, _
     'Show userform, return selected date, and unload
     Me.Show
     
-    'Save the dates, with the public variables that are declared in 'Global_Var'
+    'Fdate1 & Ldate1
+    'GetDate = DateOut
+    
+    'Dim Fdate As String
+    'Dim Ldate As String
     Fdate = Fdate1.value
     Ldate = Ldate1.value
+    'Range("A5").value = Fdate
+    'Range("A6").value = Ldate
     
     GetDate = Fdate1.value                                 '& Ldate1.value
     Unload Me
@@ -1659,12 +1665,9 @@ Private Sub lblDate67_MouseMove(ByVal Button As Integer, ByVal Shift As Integer,
 Private Sub UserForm_Initialize()
     #If Mac Then
         ResizeUserForm Me
-        With Me
-            .Frame1.Left = 170
-            .Frame1.Top = 5
-            .Height = 275
-        End With
-        
+        Me.Frame1.Left = 170
+        Me.Frame1.Top = 5
+        Me.Height = 275
     #End If
     EnterButton1.Enabled = False
 End Sub
