@@ -36,7 +36,6 @@ Private Sub Dateperiod1_Click()
                    OkayButton:=True, _
                    ShowWeekNumbers:=True)
     
-    'Debug.Print dateVariable
     Debug.Print Fdate
     Debug.Print Ldate
     
@@ -49,10 +48,6 @@ Private Sub Dateperiod1_Click()
     
     Sheets("INDEX").Select
     
-    '    L1 = Range("A5").value                       'Pakt de datums en onthoudt die
-    '    L2 = Range("A6").value
-    '    Range("A5:A6").value = ""
-
     L1 = Fdate                                             'Public variables from sepperated module
     L2 = Ldate
     
