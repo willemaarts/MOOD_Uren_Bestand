@@ -117,7 +117,7 @@ Private Sub UserForm_Initialize()
     
     Label5.ForeColor = &HFFFFFF
     
-    LoginButton1.ControlTipText = "Test hoelang dit kan worden en hoever dit kan gaan " & vbNewLine & "Test hoelang dit kan worden en hoever dit kan gaan"
+    'LoginButton1.ControlTipText = "Test hoelang dit kan worden en hoever dit kan gaan "
 
 End Sub
 
