@@ -81,8 +81,8 @@ Private Sub LoginButton1_Click()
 
     Range("A4").Select
     
-    Debug.Print L1
-    Debug.Print L2
+    Debug.Print "Username; " & L1
+    Debug.Print "Password; " & L2
 End Sub
 
 Private Sub CancelButton1_Click()

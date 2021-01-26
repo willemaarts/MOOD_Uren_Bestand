@@ -14,11 +14,6 @@ Private Sub Test_EmptyRow_HideEmployee()
         
         X = X + 1
 
-        'If ActiveCell.Offset(0, 9).Value = "#WAARDE!" Then
-        '    Debug.Print "Error; #WAARDE!"
-        '    MsgBox "A #WAARDE! error has occurred. Please contact the administrator"
-        'End If
-
         If ActiveCell.Offset(0, 9).value = CVErr(xlErrValue) Then
             Debug.Print "Error; #WAARDE!"
             MsgBox "A #WAARDE! error has occurred. Please contact the administrator"
