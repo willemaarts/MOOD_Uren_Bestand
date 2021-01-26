@@ -6,11 +6,12 @@ Sub ExportProcess()
 
     If Range("B15").value = "Mood Eindhoven, Willem Aarts" Then
         
-        answer = MsgBox("Export Active project to GitHub?" & vbNewLine & _
+        answer = MsgBox("Export Active project to GitHub?" & vbNewLine & vbNewLine & _
+                        "Directory;" & vbNewLine & _
                         "C:\Users\wille\OneDrive\Documenten\GitHub\MOOD_Uren_Bestand\VisualBasic, " & ActiveWorkbook.Name, vbExclamation + vbYesNo)
     
         If answer = vbNo Then
-            MsgBox "Closing workbook"
+            'MsgBox "Closing workbook"
             Exit Sub
         Else
             MsgBox "Exporting Active project to GitHub map"
