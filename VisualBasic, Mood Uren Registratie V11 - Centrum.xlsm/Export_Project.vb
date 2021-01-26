@@ -2,10 +2,14 @@ Attribute VB_Name = "Export_Project"
 ' Excel macro to export all VBA source code in this project to text files for proper source control versioning
 ' Requires enabling the Excel setting in Options/Trust Center/Trust Center Settings/Macro Settings/Trust access to the VBA project object model
 Sub ExportProcess()
+    Dim Rval As Variant
     Dim answer As Integer
 
-    If Range("B15").value = "Mood Eindhoven, Willem Aarts" Then
-        
+    Rval = Range("B15").value
+
+    Select Case Rval
+
+    Case "Mood Eindhoven, Willem Aarts"
         answer = MsgBox("Export Active project to GitHub?" & vbNewLine & vbNewLine & _
                         "Directory;" & vbNewLine & _
                         "C:\Users\wille\OneDrive\Documenten\GitHub\MOOD_Uren_Bestand\VisualBasic, " & ActiveWorkbook.Name, vbExclamation + vbYesNo)
@@ -19,10 +23,25 @@ Sub ExportProcess()
             'Code
         End If
     
-    Else
-        'Do Nothing
-    End If
+    Case "Mood Eindhoven, Willem Aarts"
+        answer = MsgBox("Export Active project to GitHub?" & vbNewLine & vbNewLine & _
+                        "Directory;" & vbNewLine & _
+                        "C:\Users\wille\OneDrive\Documenten\GitHub\MOOD_Uren_Bestand\VisualBasic, " & ActiveWorkbook.Name, vbExclamation + vbYesNo)
     
+        If answer = vbNo Then
+            'MsgBox "Closing workbook"
+            Exit Sub
+        Else
+            MsgBox "Exporting Active project to GitHub map"
+            Application.Run ("Export_Project.ExportVisualBasicCode")
+            'Code
+        End If
+
+    Case Else
+        'Do Nothing
+    
+    End Select
+
 End Sub
 
 Public Sub ExportVisualBasicCode()
@@ -81,3 +100,29 @@ NtN:
 End Sub
 
 
+
+
+'Sub ExportProcess1()
+'    Dim answer As Integer
+'
+'    If Range("B15").value = "Mood Eindhoven, Willem Aarts" Then
+'
+'        answer = MsgBox("Export Active project to GitHub?" & vbNewLine & vbNewLine & _
+'                        "Directory;" & vbNewLine & _
+'                        "C:\Users\wille\OneDrive\Documenten\GitHub\MOOD_Uren_Bestand\VisualBasic, " & ActiveWorkbook.Name, vbExclamation + vbYesNo)
+'
+'        If answer = vbNo Then
+'            'MsgBox "Closing workbook"
+'            Exit Sub
+'        Else
+'            MsgBox "Exporting Active project to GitHub map"
+'            Application.Run ("Export_Project.ExportVisualBasicCode")
+'            'Code
+'        End If
+'
+'    Else
+'        'Do Nothing
+'    End If
+'
+'End Sub
+'
