@@ -4,7 +4,8 @@ Attribute VB_Name = "Export_Project"
 Sub ExportProcess()
     Dim Rval As Variant
     Dim answer As Integer
-
+    
+    Sheets("INDEX").Select
     Rval = Range("B15").value
 
     Select Case Rval
