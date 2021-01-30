@@ -45,7 +45,7 @@ Public Sub pdfWeakly()
     #End If
 End Sub
 
-Public Sub pdfEmployee()                                    'SaveActiveSheetAsPDFInMacExcel2016()
+Public Sub pdfEmployee()                                   'SaveActiveSheetAsPDFInMacExcel2016()
     'Ron de Bruin : 29-July-2017
     'Test macro to save the ActiveSheet as pdf with ExportAsFixedFormat
     
@@ -96,7 +96,7 @@ Function CreateFolderinMacOffice2016(NameFolder As String) As String
     Dim TestStr As String
 
     OfficeFolder = MacScript("return POSIX path of (path to desktop folder) as string")
-    OfficeFolder = Replace(OfficeFolder, "/Desktop", "") ' & _
+    OfficeFolder = Replace(OfficeFolder, "/Desktop", "")   ' & _
                                                          ' "Library/Group Containers/UBF8T346G9.Office/"
 
     PathToFolder = OfficeFolder & NameFolder
@@ -111,6 +111,5 @@ Function CreateFolderinMacOffice2016(NameFolder As String) As String
     End If
     CreateFolderinMacOffice2016 = PathToFolder
 End Function
-
 
 

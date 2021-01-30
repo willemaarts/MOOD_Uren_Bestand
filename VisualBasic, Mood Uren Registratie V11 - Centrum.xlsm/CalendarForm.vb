@@ -96,44 +96,43 @@ Public Enum calDayOfWeek
     Saturday = 7
 End Enum
 
-Public Enum calFirstWeekOfYear      'Controls how the week numbers are calculated and displayed
-    FirstJan1 = 1                   'The week with January 1st is always counted as week 1
-    FirstFourDays = 2               'The first week in January that has at least four days in it is
-                                        'counted as week 1. This calculation will change depending
-                                        'on the setting used for first day of the week. The ISO
-                                        'standard is calculating week 1 as the first week in January
-                                        'with four days with Monday being the first day of the week.
-    FirstFullWeek = 3               'The first week in January with a full week is counted as week 1.
-                                        'Like the FirstFourDays setting, this calculation will change
-                                        'depending on the first day of the week used.
+Public Enum calFirstWeekOfYear                             'Controls how the week numbers are calculated and displayed
+    FirstJan1 = 1                                          'The week with January 1st is always counted as week 1
+    FirstFourDays = 2                                      'The first week in January that has at least four days in it is
+    'counted as week 1. This calculation will change depending
+    'on the setting used for first day of the week. The ISO
+    'standard is calculating week 1 as the first week in January
+    'with four days with Monday being the first day of the week.
+    FirstFullWeek = 3                                      'The first week in January with a full week is counted as week 1.
+    'Like the FirstFourDays setting, this calculation will change
+    'depending on the first day of the week used.
 End Enum
 
-Private UserformEventsEnabled As Boolean    'Controls userform events
-Private DateOut As Date                     'The date returned from the CalendarForm
-Private SelectedDateIn As Date              'The initial selected date, as well as the date currently selected by the
-                                                'user if the Okay button is enabled
-Private OkayEnabled As Boolean              'Stores whether Okay button is enabled
-Private TodayEnabled As Boolean             'Stores whether Today button is enabled
-Private MinDate As Date                     'Minimum date set by user
-Private MaxDate As Date                     'Maximum date set by user
-Private cmbYearMin As Long                  'Current lower bounds of year combobox. Not necessarily restricted to this min
-Private cmbYearMax As Long                  'Current upper bounds of year combobox. Not necessarily restricted to this max
-Private StartWeek As VbDayOfWeek            'First day of week in calendar
-Private WeekOneOfYear As VbFirstWeekOfYear  'First week of year when setting week numbers
-Private HoverControlName As String          'Name of the date label that is currently being hovered over. Used when returning
-                                                'the hovered control to its original color
-Private HoverControlColor As Long           'Original color of the date label that is currently being hovered over
-Private RatioToResize As Double             'Ratio to resize elements of userform. This is set by the DateFontSize argument
-                                                'in the GetDate function
-Private bgDateColor As Long                 'Color of date label backgrounds
-Private bgDateHoverColor As Long            'Color of date label backgrounds when hovering over
-Private bgDateSelectedColor As Long         'Color of selected date label background
-Private lblDateColor As Long                'Font color of date labels
-Private lblDatePrevMonthColor As Long       'Font color of trailing month date labels
-Private lblDateTodayColor As Long           'Font color of today's date
-Private lblDateSatColor As Long             'Font color of Saturday date labels
-Private lblDateSunColor As Long             'Font color of Sunday date labels
-
+Private UserformEventsEnabled As Boolean                   'Controls userform events
+Private DateOut As Date                                    'The date returned from the CalendarForm
+Private SelectedDateIn As Date                             'The initial selected date, as well as the date currently selected by the
+'user if the Okay button is enabled
+Private OkayEnabled As Boolean                             'Stores whether Okay button is enabled
+Private TodayEnabled As Boolean                            'Stores whether Today button is enabled
+Private MinDate As Date                                    'Minimum date set by user
+Private MaxDate As Date                                    'Maximum date set by user
+Private cmbYearMin As Long                                 'Current lower bounds of year combobox. Not necessarily restricted to this min
+Private cmbYearMax As Long                                 'Current upper bounds of year combobox. Not necessarily restricted to this max
+Private StartWeek As VbDayOfWeek                           'First day of week in calendar
+Private WeekOneOfYear As VbFirstWeekOfYear                 'First week of year when setting week numbers
+Private HoverControlName As String                         'Name of the date label that is currently being hovered over. Used when returning
+'the hovered control to its original color
+Private HoverControlColor As Long                          'Original color of the date label that is currently being hovered over
+Private RatioToResize As Double                            'Ratio to resize elements of userform. This is set by the DateFontSize argument
+'in the GetDate function
+Private bgDateColor As Long                                'Color of date label backgrounds
+Private bgDateHoverColor As Long                           'Color of date label backgrounds when hovering over
+Private bgDateSelectedColor As Long                        'Color of selected date label background
+Private lblDateColor As Long                               'Font color of date labels
+Private lblDatePrevMonthColor As Long                      'Font color of trailing month date labels
+Private lblDateTodayColor As Long                          'Font color of today's date
+Private lblDateSatColor As Long                            'Font color of Saturday date labels
+Private lblDateSunColor As Long                            'Font color of Sunday date labels
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' GetDate
@@ -274,8 +273,6 @@ Public Function GetDate(Optional SelectedDate As Date = 0, _
     Unload Me
 End Function
 
-
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' InitializeUserform
 '
@@ -287,42 +284,42 @@ End Function
 ' The visibility of the Okay button, Today button, and week numbers is also set here.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, MaximumDate As Date, _
-    RangeOfYears As Long, _
-    PositionTop As Long, PositionLeft As Long, _
-    SizeFont As Long, bWeekNumbers As Boolean, _
-    BackgroundColor As Long, _
-    HeaderColor As Long, _
-    HeaderFontColor As Long, _
-    SubHeaderColor As Long, _
-    SubHeaderFontColor As Long, _
-    DateBorder As Boolean, DateBorderColor As Long, _
-    DateSpecialEffect As fmSpecialEffect)
+                               RangeOfYears As Long, _
+                               PositionTop As Long, PositionLeft As Long, _
+                               SizeFont As Long, bWeekNumbers As Boolean, _
+                               BackgroundColor As Long, _
+                               HeaderColor As Long, _
+                               HeaderFontColor As Long, _
+                               SubHeaderColor As Long, _
+                               SubHeaderFontColor As Long, _
+                               DateBorder As Boolean, DateBorderColor As Long, _
+                               DateSpecialEffect As fmSpecialEffect)
     
-    Dim TempDate As Date                        'Used to set selected date, if none has been provided
-    Dim SelectedYear As Long                    'Year of selected date
-    Dim SelectedMonth As Long                   'Month of selected date
-    Dim SelectedDay As Long                     'Day of seledcted date (if applicable)
-    Dim TempDayOfWeek As Long                   'Used to set day labels in subheader
-    Dim BorderSpacing As Double                 'Padding between the outermost elements of userform and edge of userform
-    Dim HeaderDefaultFontSize As Long           'Default font size of the header labels (month and year)
-    Dim bgHeaderDefaultHeight As Double         'Default height of the background behind header labels
-    Dim lblMonthYearDefaultHeight As Double     'Default height of the month and year header labels
-    Dim scrlMonthDefaultHeight As Double        'Default height of the month scroll bar
-    Dim bgDayLabelsDefaultHeight As Double      'Default height of the background behind the subheader day of week labels
-    Dim bgDateDefaultHeight As Double           'Default height of the background behind each date label
-    Dim bgDateDefaultWidth As Double            'Default width of the background behind each date label
-    Dim lblDateDefaultHeight As Double          'Default height of each date label
-    Dim cmdButtonDefaultHeight As Double        'Default height of Today and Okay command buttons
-    Dim cmdButtonDefaultWidth As Double         'Default width of Today and Okay command buttons
-    Dim cmdButtonsCombinedWidth As Double       'Combined width of Today and Okay buttons. Used to center on userform
-    Dim cmdButtonsMaxHeight As Double           'Maximum height of command buttons and month scroll bar
-    Dim cmdButtonsMaxWidth As Double            'Maximum width of command buttons
-    Dim cmdButtonsMaxFontSize As Long           'Maximum font size of command buttons
-    Dim bgControl As MSForms.Control            'Stores current date label background in loop to initialize various settings
-    Dim lblControl As MSForms.Control           'Stores current date label in loop to initialize various settings
-    Dim HeightOffset As Double                  'Difference between form height and inside height, to account for toolbar
-    Dim i As Long                               'Used for loops
-    Dim j As Long                               'Used for loops
+    Dim TempDate As Date                                   'Used to set selected date, if none has been provided
+    Dim SelectedYear As Long                               'Year of selected date
+    Dim SelectedMonth As Long                              'Month of selected date
+    Dim SelectedDay As Long                                'Day of seledcted date (if applicable)
+    Dim TempDayOfWeek As Long                              'Used to set day labels in subheader
+    Dim BorderSpacing As Double                            'Padding between the outermost elements of userform and edge of userform
+    Dim HeaderDefaultFontSize As Long                      'Default font size of the header labels (month and year)
+    Dim bgHeaderDefaultHeight As Double                    'Default height of the background behind header labels
+    Dim lblMonthYearDefaultHeight As Double                'Default height of the month and year header labels
+    Dim scrlMonthDefaultHeight As Double                   'Default height of the month scroll bar
+    Dim bgDayLabelsDefaultHeight As Double                 'Default height of the background behind the subheader day of week labels
+    Dim bgDateDefaultHeight As Double                      'Default height of the background behind each date label
+    Dim bgDateDefaultWidth As Double                       'Default width of the background behind each date label
+    Dim lblDateDefaultHeight As Double                     'Default height of each date label
+    Dim cmdButtonDefaultHeight As Double                   'Default height of Today and Okay command buttons
+    Dim cmdButtonDefaultWidth As Double                    'Default width of Today and Okay command buttons
+    Dim cmdButtonsCombinedWidth As Double                  'Combined width of Today and Okay buttons. Used to center on userform
+    Dim cmdButtonsMaxHeight As Double                      'Maximum height of command buttons and month scroll bar
+    Dim cmdButtonsMaxWidth As Double                       'Maximum width of command buttons
+    Dim cmdButtonsMaxFontSize As Long                      'Maximum font size of command buttons
+    Dim bgControl As MSForms.Control                       'Stores current date label background in loop to initialize various settings
+    Dim lblControl As MSForms.Control                      'Stores current date label in loop to initialize various settings
+    Dim HeightOffset As Double                             'Difference between form height and inside height, to account for toolbar
+    Dim i As Long                                          'Used for loops
+    Dim j As Long                                          'Used for loops
     
     'Initialize default values
     BorderSpacing = 6 * RatioToResize
@@ -397,8 +394,8 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
     'Cover over month scroll bar
     With bgScrollCover
         .Height = scrlMonth.Height
-        .Width = scrlMonth.Width - 25 '25 is the width of the actual scroll buttons,
-                                      'which need to remain visible
+        .Width = scrlMonth.Width - 25                      '25 is the width of the actual scroll buttons,
+        'which need to remain visible
         .Left = scrlMonth.Left + 12.5
         .Top = scrlMonth.Top
     End With
@@ -461,14 +458,14 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
                 Else
                     .Left = BorderSpacing
                 End If
-            Else 'All other labels placed directly next to preceding label
+            Else                                           'All other labels placed directly next to preceding label
                 .Left = Me("lblDay" & CStr(i - 1)).Left + Me("lblDay" & CStr(i - 1)).Width
             End If
         End With
     Next i
     
     'Size all date labels and backgrounds
-    For i = 1 To 6 'Rows
+    For i = 1 To 6                                         'Rows
         'First set position and visibility of week number label
         If Not bWeekNumbers Then
             Me("lblWeek" & CStr(i)).Visible = False
@@ -503,7 +500,7 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
                     Else
                         .Left = BorderSpacing
                     End If
-                Else 'All other labels placed directly next to preceding label in row
+                Else                                       'All other labels placed directly next to preceding label in row
                     .Left = Me("bgDate" & CStr(i) & CStr(j - 1)).Left + Me("bgDate" & CStr(i) & CStr(j - 1)).Width
                 End If
                 If i = 1 Then
@@ -594,14 +591,14 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
     End If
     
     'Position Okay and Today buttons, depending on which ones are enabled
-    If OkayEnabled And TodayEnabled Then 'Both buttons enabled.
+    If OkayEnabled And TodayEnabled Then                   'Both buttons enabled.
         cmdToday.Top = cmdOkay.Top
         cmdButtonsCombinedWidth = cmdToday.Width + cmdOkay.Width
         cmdToday.Left = ((frameCalendar.Width - cmdButtonsCombinedWidth) / 2) - (BorderSpacing / 2)
         cmdOkay.Left = cmdToday.Left + cmdToday.Width + BorderSpacing
-    ElseIf OkayEnabled Then 'Only Okay button enabled
+    ElseIf OkayEnabled Then                                'Only Okay button enabled
         cmdOkay.Left = (frameCalendar.Width - cmdOkay.Width) / 2
-    ElseIf TodayEnabled Then 'Only Today button enabled
+    ElseIf TodayEnabled Then                               'Only Today button enabled
         cmdToday.Top = bgDate61.Top + bgDate61.Height + BorderSpacing
         cmdToday.Left = (frameCalendar.Width - cmdToday.Width) / 2
     End If
@@ -610,9 +607,9 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
     HeightOffset = Me.Height - Me.InsideHeight
     If OkayEnabled Then
         frameCalendar.Height = cmdOkay.Top + cmdOkay.Height + HeightOffset + BorderSpacing
-    ElseIf TodayEnabled Then 'Only Today button enabled
+    ElseIf TodayEnabled Then                               'Only Today button enabled
         frameCalendar.Height = cmdToday.Top + cmdToday.Height + HeightOffset + BorderSpacing
-    Else 'Neither button enabled
+    Else                                                   'Neither button enabled
         frameCalendar.Height = bgDate61.Top + bgDate61.Height + HeightOffset + BorderSpacing
     End If
     
@@ -633,7 +630,7 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
         SelectedMonth = Month(SelectedDateIn)
         SelectedDay = Day(SelectedDateIn)
         Call SetSelectionLabel(SelectedDateIn)
-    Else 'No SelectedDate provided, default to today's date
+    Else                                                   'No SelectedDate provided, default to today's date
         cmdOkay.Enabled = False
         TempDate = Date
         If TempDate < MinDate Then
@@ -643,7 +640,7 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
         End If
         SelectedYear = Year(TempDate)
         SelectedMonth = Month(TempDate)
-        SelectedDay = 0 'Don't want to highlight a 'selected date,' since user supplied no date
+        SelectedDay = 0                                    'Don't want to highlight a 'selected date,' since user supplied no date
         Call SetSelectionLabel(Empty)
     End If
     
@@ -709,8 +706,6 @@ Private Sub InitializeUserform(SelectedDate As Date, MinimumDate As Date, Maximu
     Call SetDays(SelectedMonth, SelectedYear, SelectedDay)
 End Sub
 
-
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' cmdOkay_Click
 '
@@ -730,7 +725,6 @@ Private Sub cmdOkay_Click()
     'Me.Hide
 End Sub
 
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' cmdToday_Click
 '
@@ -742,10 +736,10 @@ End Sub
 ' nothing is selected.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub cmdToday_Click()
-    Dim SelectedMonth As Long           'Month of selected date
-    Dim SelectedYear As Long            'Year of selected date
-    Dim SelectedDay As Long             'Day of selected date, if applicable
-    Dim TodayDate As Date               'Today's date
+    Dim SelectedMonth As Long                              'Month of selected date
+    Dim SelectedYear As Long                               'Year of selected date
+    Dim SelectedDay As Long                                'Day of selected date, if applicable
+    Dim TodayDate As Date                                  'Today's date
     
     UserformEventsEnabled = False
     SelectedDay = 0
@@ -771,7 +765,6 @@ Private Sub cmdToday_Click()
     
     UserformEventsEnabled = True
 End Sub
-
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' UserForm_QueryClose
@@ -814,12 +807,12 @@ End Sub
 ' If Okay button is disabled, clicking a date hides the userform and returns that date.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub ClickControl(ctrl As MSForms.Control)
-    Dim SelectedMonth As Long           'Month of selected date
-    Dim SelectedYear As Long            'Year of selected date
-    Dim SelectedDay As Long             'Day of selected date
-    Dim SelectedDate As Date            'Date that the user has selected
-    Dim RowIndex As Long                'Row index of the clicked date label
-    Dim ColumnIndex As Long             'Column index of the clicked date label
+    Dim SelectedMonth As Long                              'Month of selected date
+    Dim SelectedYear As Long                               'Year of selected date
+    Dim SelectedDay As Long                                'Day of selected date
+    Dim SelectedDate As Date                               'Date that the user has selected
+    Dim RowIndex As Long                                   'Row index of the clicked date label
+    Dim ColumnIndex As Long                                'Column index of the clicked date label
     
     'Get selected day/year from scroll bar and combobox
     SelectedMonth = scrlMonth.value
@@ -842,10 +835,10 @@ Private Sub ClickControl(ctrl As MSForms.Control)
             SelectedMonth = 12
         End If
     
-    'Selection is from next month. The trailing dates from next month can
-    'show up in rows 5 and 6. The smallest day that could exist in these rows
-    'from the current month is about 23, so if the day is smaller than that,
-    'we know it came from next month.
+        'Selection is from next month. The trailing dates from next month can
+        'show up in rows 5 and 6. The smallest day that could exist in these rows
+        'from the current month is about 23, so if the day is smaller than that,
+        'we know it came from next month.
     ElseIf RowIndex >= 5 And SelectedDay < 20 Then
         SelectedMonth = SelectedMonth + 1
         'Handle December
@@ -865,16 +858,15 @@ Private Sub ClickControl(ctrl As MSForms.Control)
         Me.Hide
     Else
         UserformEventsEnabled = False
-            cmdOkay.Enabled = True
-            SelectedDateIn = SelectedDate
-            scrlMonth.value = SelectedMonth
-            Call SetSelectionLabel(SelectedDate)
-            Call SetMonthYear(SelectedMonth, SelectedYear)
-            Call SetDays(SelectedMonth, SelectedYear, SelectedDay)
+        cmdOkay.Enabled = True
+        SelectedDateIn = SelectedDate
+        scrlMonth.value = SelectedMonth
+        Call SetSelectionLabel(SelectedDate)
+        Call SetMonthYear(SelectedMonth, SelectedYear)
+        Call SetDays(SelectedMonth, SelectedYear, SelectedDay)
         UserformEventsEnabled = True
     End If
 End Sub
-
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' HoverControl
@@ -901,11 +893,11 @@ Private Sub CommandButton1_Click()
 End Sub
 
 Private Sub CommandButton2_Click()
-Me.Hide
+    Me.Hide
 End Sub
 
 Private Sub EnterButton1_Click()
-Me.Hide
+    Me.Hide
 End Sub
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -917,6 +909,7 @@ End Sub
 Private Sub lblMonth_Click()
     cmbMonth.DropDown
 End Sub
+
 Private Sub lblYear_Click()
     cmbYear.DropDown
 End Sub
@@ -932,6 +925,7 @@ End Sub
 Private Sub cmbMonth_Change()
     Call cmbMonthYearChange
 End Sub
+
 Private Sub cmbYear_Change()
     If Not UserformEventsEnabled Then Exit Sub
     
@@ -942,7 +936,6 @@ Private Sub cmbYear_Change()
     Call cmbMonthYearChange
 End Sub
 
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' cmbMonthYearChange
 '
@@ -951,9 +944,9 @@ End Sub
 ' scroll bar to match, and resets the calendar date labels.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub cmbMonthYearChange()
-    Dim SelectedMonth As Long           'Month of selected date
-    Dim SelectedYear As Long            'Year of selected date
-    Dim SelectedDay As Long             'Day of selected date
+    Dim SelectedMonth As Long                              'Month of selected date
+    Dim SelectedYear As Long                               'Year of selected date
+    Dim SelectedDay As Long                                'Day of selected date
     
     If Not UserformEventsEnabled Then Exit Sub
     UserformEventsEnabled = False
@@ -981,7 +974,6 @@ Private Sub cmbMonthYearChange()
     UserformEventsEnabled = True
 End Sub
 
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' scrlMonth_Change
 '
@@ -990,12 +982,12 @@ End Sub
 ' and resets all the labels of the userform to the new month.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub scrlMonth_Change()
-    Dim TempYear As Long        'Temporarily store selected year to test min and max dates
-    Dim MinMonth As Long        'Sets lower limit of scroll bar
-    Dim MaxMonth As Long        'Sets upper limit of scroll bar
-    Dim SelectedMonth As Long   'Month of selected date
-    Dim SelectedYear As Long    'Year of selected date
-    Dim SelectedDay As Long     'Day of selected date
+    Dim TempYear As Long                                   'Temporarily store selected year to test min and max dates
+    Dim MinMonth As Long                                   'Sets lower limit of scroll bar
+    Dim MaxMonth As Long                                   'Sets upper limit of scroll bar
+    Dim SelectedMonth As Long                              'Month of selected date
+    Dim SelectedYear As Long                               'Year of selected date
+    Dim SelectedDay As Long                                'Day of selected date
     
     If Not UserformEventsEnabled Then Exit Sub
     UserformEventsEnabled = False
@@ -1025,8 +1017,8 @@ Private Sub scrlMonth_Change()
             cmbYearMin = cmbYear.value
         End If
         Call SetMonthCombobox(cmbYear.value, scrlMonth.value)
-    'If user goes up one month from December, scroll bar will have value of
-    '13. Reset to January and increment year.
+        'If user goes up one month from December, scroll bar will have value of
+        '13. Reset to January and increment year.
     ElseIf scrlMonth.value = 13 Then
         scrlMonth.value = 1
         cmbYear.value = cmbYear.value + 1
@@ -1048,7 +1040,6 @@ Private Sub scrlMonth_Change()
     UserformEventsEnabled = True
 End Sub
 
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' SetMonthCombobox
 '
@@ -1057,11 +1048,11 @@ End Sub
 ' outside the bounds set by the minimum or maximum date.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub SetMonthCombobox(YearIn As Long, MonthIn As Long)
-    Dim YearMinDate As Long             'Year of the minimum date
-    Dim YearMaxDate As Long             'Year of the maximum date
-    Dim MonthMinDate As Long            'Month of the minimum date
-    Dim MonthMaxDate As Long            'Month of the maximum date
-    Dim i As Long                       'Used for looping
+    Dim YearMinDate As Long                                'Year of the minimum date
+    Dim YearMaxDate As Long                                'Year of the maximum date
+    Dim MonthMinDate As Long                               'Month of the minimum date
+    Dim MonthMaxDate As Long                               'Month of the maximum date
+    Dim i As Long                                          'Used for looping
     
     'Get month and year of minimum and maximum dates and clear combobox
     YearMinDate = Year(MinDate)
@@ -1079,7 +1070,7 @@ Private Sub SetMonthCombobox(YearIn As Long, MonthIn As Long)
         If MonthIn > MonthMaxDate Then MonthIn = MonthMaxDate
         cmbMonth.ListIndex = MonthIn - MonthMinDate
     
-    'Only minimum date occurs in selected year
+        'Only minimum date occurs in selected year
     ElseIf YearIn = YearMinDate Then
         For i = MonthMinDate To 12
             cmbMonth.AddItem Choose(i, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
@@ -1087,7 +1078,7 @@ Private Sub SetMonthCombobox(YearIn As Long, MonthIn As Long)
         If MonthIn < MonthMinDate Then MonthIn = MonthMinDate
         cmbMonth.ListIndex = MonthIn - MonthMinDate
     
-    'Only maximum date occurs in selected year
+        'Only maximum date occurs in selected year
     ElseIf YearIn = YearMaxDate Then
         For i = 1 To MonthMaxDate
             cmbMonth.AddItem Choose(i, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
@@ -1095,14 +1086,13 @@ Private Sub SetMonthCombobox(YearIn As Long, MonthIn As Long)
         If MonthIn > MonthMaxDate Then MonthIn = MonthMaxDate
         cmbMonth.ListIndex = MonthIn - 1
     
-    'No minimum or maximum date in selected year. Add all months to combobox
+        'No minimum or maximum date in selected year. Add all months to combobox
     Else
         cmbMonth.List = Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
         cmbMonth.ListIndex = MonthIn - 1
     End If
 
 End Sub
-
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' SetMonthYear
@@ -1112,8 +1102,8 @@ End Sub
 ' header, and positions them in the center of the month scroll bar.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub SetMonthYear(MonthIn As Long, YearIn As Long)
-    Dim ExtraSpace As Double                'Space between month and year labels
-    Dim CombinedLabelWidth As Double        'Combined width of both month and year labels
+    Dim ExtraSpace As Double                               'Space between month and year labels
+    Dim CombinedLabelWidth As Double                       'Combined width of both month and year labels
     
     ExtraSpace = 4 * RatioToResize
     
@@ -1159,7 +1149,6 @@ Private Sub SetMonthYear(MonthIn As Long, YearIn As Long)
     HoverControlName = vbNullString
 End Sub
 
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' SetDays
 '
@@ -1169,27 +1158,27 @@ End Sub
 ' highlighted.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
-    Dim PrevMonth As Long               'Month preceding selected month. Used for trailing dates
-    Dim NextMonth As Long               'Month following selected month. Used for trailing dates
-    Dim Today As Date                   'Today's date
-    Dim TodayDay As Long                'Day number of today's date
-    Dim StartDayOfWeek  As Long         'Stores the weekday number of the first day in selected month
-    Dim LastDayOfMonth As Long          'Last day of the month
-    Dim LastDayOfPrevMonth As Long      'Last day of preceding month. Used for trailing dates
-    Dim CurrentDay As Long              'Tracks current day in the month while setting labels
-    Dim TempCurrentDay As Long          'Tracks the current day for previous month without incrementing actual CurrentDay
-    Dim WeekNumber As Long              'Stores week number for week number labels
-    Dim StartDayOfWeekDate As Date      'Stores first date in the week. Used to calculate week numbers
-    Dim SaturdayIndex As Long           'Column index of Saturdays. Used to set color of Saturday labels, if applicable
-    Dim SundayIndex As Long             'Column index of Sundays
-    Dim MinDay As Long                  'Stores lower limit of days if minimum date falls in selected month
-    Dim MaxDay As Long                  'Stores upper limit of days if maximum date falls in selected month
-    Dim PrevMonthMinDay As Long         'Stores lower limit of days if minimum date falls in preceding month
-    Dim NextMonthMaxDay As Long         'Stores upper limit of days if maximum date falls in next month
-    Dim lblControl As MSForms.Control   'Stores current date label while changing settings
-    Dim bgControl As MSForms.Control    'Stores current date label background while changing settings
-    Dim i As Long                       'Used for looping
-    Dim j As Long                       'Used for looping
+    Dim PrevMonth As Long                                  'Month preceding selected month. Used for trailing dates
+    Dim NextMonth As Long                                  'Month following selected month. Used for trailing dates
+    Dim Today As Date                                      'Today's date
+    Dim TodayDay As Long                                   'Day number of today's date
+    Dim StartDayOfWeek  As Long                            'Stores the weekday number of the first day in selected month
+    Dim LastDayOfMonth As Long                             'Last day of the month
+    Dim LastDayOfPrevMonth As Long                         'Last day of preceding month. Used for trailing dates
+    Dim CurrentDay As Long                                 'Tracks current day in the month while setting labels
+    Dim TempCurrentDay As Long                             'Tracks the current day for previous month without incrementing actual CurrentDay
+    Dim WeekNumber As Long                                 'Stores week number for week number labels
+    Dim StartDayOfWeekDate As Date                         'Stores first date in the week. Used to calculate week numbers
+    Dim SaturdayIndex As Long                              'Column index of Saturdays. Used to set color of Saturday labels, if applicable
+    Dim SundayIndex As Long                                'Column index of Sundays
+    Dim MinDay As Long                                     'Stores lower limit of days if minimum date falls in selected month
+    Dim MaxDay As Long                                     'Stores upper limit of days if maximum date falls in selected month
+    Dim PrevMonthMinDay As Long                            'Stores lower limit of days if minimum date falls in preceding month
+    Dim NextMonthMaxDay As Long                            'Stores upper limit of days if maximum date falls in next month
+    Dim lblControl As MSForms.Control                      'Stores current date label while changing settings
+    Dim bgControl As MSForms.Control                       'Stores current date label background while changing settings
+    Dim i As Long                                          'Used for looping
+    Dim j As Long                                          'Used for looping
     
     'Set min and max day, if applicable. If not, min and max day are set to 0 and 32,
     'respectively, since dates will never fall outside those bounds
@@ -1230,7 +1219,7 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
     
     'Loop through all date labels and set captions and colors
     CurrentDay = 1
-    For i = 1 To 6 'Rows
+    For i = 1 To 6                                         'Rows
     
         'Set week number first, as it happens only once per row
         'Entire first row is last month
@@ -1243,11 +1232,11 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
                 StartDayOfWeekDate = DateSerial(YearIn - 1, PrevMonth, TempCurrentDay)
             End If
             
-        'Previous month, but entire row is not last month. In this
-        'case just use first of month. This is done because when using
-        'the DatePart function to calculate week number, the last week
-        'in December can be calculated incorrectly, so we want to default
-        'to January 1st instead, which is always correct
+            'Previous month, but entire row is not last month. In this
+            'case just use first of month. This is done because when using
+            'the DatePart function to calculate week number, the last week
+            'in December can be calculated incorrectly, so we want to default
+            'to January 1st instead, which is always correct
         ElseIf i = 1 Then
             StartDayOfWeekDate = DateSerial(YearIn, MonthIn, 1)
         
@@ -1257,7 +1246,7 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
                 TempCurrentDay = CurrentDay
                 StartDayOfWeekDate = DateSerial(YearIn, MonthIn, TempCurrentDay)
             
-            'Next month
+                'Next month
             Else
                 TempCurrentDay = CLng(CurrentDay - LastDayOfMonth)
                 If NextMonth <> 1 Then
@@ -1280,7 +1269,7 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
         Me("lblWeek" & CStr(i)).Caption = WeekNumber
         
         'Set date labels
-        For j = 1 To 7 'Columns
+        For j = 1 To 7                                     'Columns
             Set lblControl = Me("lblDate" & CStr(i) & CStr(j))
             Set bgControl = Me("bgDate" & CStr(i) & CStr(j))
             With lblControl
@@ -1307,7 +1296,7 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
                         End If
                     End If
                     
-                'Previous month dates if month DOESN'T start on first day of week
+                    'Previous month dates if month DOESN'T start on first day of week
                 ElseIf i = 1 And j < StartDayOfWeek Then
                     'If minimum date is in current month, then previous month shouldn't be visible
                     If MinDay <> 0 Then
@@ -1329,7 +1318,7 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
                         End If
                     End If
 
-                'Next month dates
+                    'Next month dates
                 ElseIf CurrentDay > LastDayOfMonth Then
                     'If maximum date is in current month, then next month shouldn't be visible
                     If MaxDay <> 32 Then
@@ -1352,7 +1341,7 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
                     End If
                     CurrentDay = CurrentDay + 1
                     
-                'Current month dates
+                    'Current month dates
                 Else
                     'Disable any dates outside bounds of minimum or maximum dates.
                     'Background of date label is set to invisible, so it doesn't
@@ -1361,7 +1350,7 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
                         .Visible = True
                         .Enabled = False
                         bgControl.Visible = False
-                    Else 'Within bounds. Enable and set colors
+                    Else                                   'Within bounds. Enable and set colors
                         .Visible = True
                         .Enabled = True
                         bgControl.Visible = True
@@ -1391,7 +1380,6 @@ Private Sub SetDays(MonthIn As Long, YearIn As Long, Optional DayIn As Long)
     Next i
 End Sub
 
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' SetSelectionLabel
 '
@@ -1399,8 +1387,8 @@ End Sub
 ' selection if the Okay button is enabled.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub SetSelectionLabel(DateIn As Date)
-    Dim CombinedLabelWidth As Double        'Combined width of both labels, used to center
-    Dim ExtraSpace As Double                'Space between the two labels
+    Dim CombinedLabelWidth As Double                       'Combined width of both labels, used to center
+    Dim ExtraSpace As Double                               'Space between the two labels
     
     ExtraSpace = 3 * RatioToResize
     
@@ -1408,7 +1396,7 @@ Private Sub SetSelectionLabel(DateIn As Date)
     If DateIn = 0 Then
         lblSelectionDate.Caption = vbNullString
         lblSelection.Left = frameCalendar.Left + ((frameCalendar.Width - lblSelection.Width) / 2)
-    Else 'A selection has been made. Set caption and center
+    Else                                                   'A selection has been made. Set caption and center
         With lblSelectionDate
             .AutoSize = False
             .Width = frameCalendar.Width
@@ -1421,7 +1409,6 @@ Private Sub SetSelectionLabel(DateIn As Date)
         lblSelectionDate.Left = lblSelection.Left + lblSelection.Width + ExtraSpace
     End If
 End Sub
-
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' GetSelectedDay
@@ -1440,31 +1427,30 @@ Private Function GetSelectedDay(MonthIn As Long, YearIn As Long) As Long
     End If
 End Function
 
-
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' Min / Max
 '
 ' Get the min/max of an arbitrary number of arguments
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Function Min(ParamArray values() As Variant) As Variant
-   Dim minValue As Variant
-   Dim value As Variant
-   minValue = values(0)
-   For Each value In values
-       If value < minValue Then minValue = value
-   Next
-   Min = minValue
-End Function
-Private Function Max(ParamArray values() As Variant) As Variant
-   Dim maxValue As Variant
-   Dim value As Variant
-   maxValue = values(0)
-   For Each value In values
-       If value > maxValue Then maxValue = value
-   Next
-   Max = maxValue
+    Dim minValue As Variant
+    Dim value As Variant
+    minValue = values(0)
+    For Each value In values
+        If value < minValue Then minValue = value
+    Next
+    Min = minValue
 End Function
 
+Private Function Max(ParamArray values() As Variant) As Variant
+    Dim maxValue As Variant
+    Dim value As Variant
+    maxValue = values(0)
+    For Each value In values
+        If value > maxValue Then maxValue = value
+    Next
+    Max = maxValue
+End Function
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' The following subs all call the ClickControl sub, passing the date label that has been
@@ -1477,89 +1463,131 @@ End Function
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 'User clicked on the background of the date label
 Private Sub bgDate11_Click(): ClickControl lblDate11: End Sub
+
 Private Sub bgDate12_Click(): ClickControl lblDate12: End Sub
 Private Sub bgDate13_Click(): ClickControl lblDate13: End Sub
+
 Private Sub bgDate14_Click(): ClickControl lblDate14: End Sub
 Private Sub bgDate15_Click(): ClickControl lblDate15: End Sub
+
 Private Sub bgDate16_Click(): ClickControl lblDate16: End Sub
 Private Sub bgDate17_Click(): ClickControl lblDate17: End Sub
+
 Private Sub bgDate21_Click(): ClickControl lblDate21: End Sub
 Private Sub bgDate22_Click(): ClickControl lblDate22: End Sub
+
 Private Sub bgDate23_Click(): ClickControl lblDate23: End Sub
 Private Sub bgDate24_Click(): ClickControl lblDate24: End Sub
+
 Private Sub bgDate25_Click(): ClickControl lblDate25: End Sub
 Private Sub bgDate26_Click(): ClickControl lblDate26: End Sub
+
 Private Sub bgDate27_Click(): ClickControl lblDate27: End Sub
 Private Sub bgDate31_Click(): ClickControl lblDate31: End Sub
+
 Private Sub bgDate32_Click(): ClickControl lblDate32: End Sub
 Private Sub bgDate33_Click(): ClickControl lblDate33: End Sub
+
 Private Sub bgDate34_Click(): ClickControl lblDate34: End Sub
 Private Sub bgDate35_Click(): ClickControl lblDate35: End Sub
+
 Private Sub bgDate36_Click(): ClickControl lblDate36: End Sub
 Private Sub bgDate37_Click(): ClickControl lblDate37: End Sub
+
 Private Sub bgDate41_Click(): ClickControl lblDate41: End Sub
 Private Sub bgDate42_Click(): ClickControl lblDate42: End Sub
+
 Private Sub bgDate43_Click(): ClickControl lblDate43: End Sub
 Private Sub bgDate44_Click(): ClickControl lblDate44: End Sub
+
 Private Sub bgDate45_Click(): ClickControl lblDate45: End Sub
 Private Sub bgDate46_Click(): ClickControl lblDate46: End Sub
+
 Private Sub bgDate47_Click(): ClickControl lblDate47: End Sub
 Private Sub bgDate51_Click(): ClickControl lblDate51: End Sub
+
 Private Sub bgDate52_Click(): ClickControl lblDate52: End Sub
 Private Sub bgDate53_Click(): ClickControl lblDate53: End Sub
+
 Private Sub bgDate54_Click(): ClickControl lblDate54: End Sub
 Private Sub bgDate55_Click(): ClickControl lblDate55: End Sub
+
 Private Sub bgDate56_Click(): ClickControl lblDate56: End Sub
 Private Sub bgDate57_Click(): ClickControl lblDate57: End Sub
+
 Private Sub bgDate61_Click(): ClickControl lblDate61: End Sub
 Private Sub bgDate62_Click(): ClickControl lblDate62: End Sub
+
 Private Sub bgDate63_Click(): ClickControl lblDate63: End Sub
 Private Sub bgDate64_Click(): ClickControl lblDate64: End Sub
+
 Private Sub bgDate65_Click(): ClickControl lblDate65: End Sub
 Private Sub bgDate66_Click(): ClickControl lblDate66: End Sub
+
 Private Sub bgDate67_Click(): ClickControl lblDate67: End Sub
 'User clicked on the actual date label itself
 Private Sub lblDate11_Click(): ClickControl lblDate11: End Sub
+
 Private Sub lblDate12_Click(): ClickControl lblDate12: End Sub
 Private Sub lblDate13_Click(): ClickControl lblDate13: End Sub
+
 Private Sub lblDate14_Click(): ClickControl lblDate14: End Sub
 Private Sub lblDate15_Click(): ClickControl lblDate15: End Sub
+
 Private Sub lblDate16_Click(): ClickControl lblDate16: End Sub
 Private Sub lblDate17_Click(): ClickControl lblDate17: End Sub
+
 Private Sub lblDate21_Click(): ClickControl lblDate21: End Sub
 Private Sub lblDate22_Click(): ClickControl lblDate22: End Sub
+
 Private Sub lblDate23_Click(): ClickControl lblDate23: End Sub
 Private Sub lblDate24_Click(): ClickControl lblDate24: End Sub
+
 Private Sub lblDate25_Click(): ClickControl lblDate25: End Sub
 Private Sub lblDate26_Click(): ClickControl lblDate26: End Sub
+
 Private Sub lblDate27_Click(): ClickControl lblDate27: End Sub
 Private Sub lblDate31_Click(): ClickControl lblDate31: End Sub
+
 Private Sub lblDate32_Click(): ClickControl lblDate32: End Sub
 Private Sub lblDate33_Click(): ClickControl lblDate33: End Sub
+
 Private Sub lblDate34_Click(): ClickControl lblDate34: End Sub
 Private Sub lblDate35_Click(): ClickControl lblDate35: End Sub
+
 Private Sub lblDate36_Click(): ClickControl lblDate36: End Sub
 Private Sub lblDate37_Click(): ClickControl lblDate37: End Sub
+
 Private Sub lblDate41_Click(): ClickControl lblDate41: End Sub
 Private Sub lblDate42_Click(): ClickControl lblDate42: End Sub
+
 Private Sub lblDate43_Click(): ClickControl lblDate43: End Sub
 Private Sub lblDate44_Click(): ClickControl lblDate44: End Sub
+
 Private Sub lblDate45_Click(): ClickControl lblDate45: End Sub
 Private Sub lblDate46_Click(): ClickControl lblDate46: End Sub
+
 Private Sub lblDate47_Click(): ClickControl lblDate47: End Sub
 Private Sub lblDate51_Click(): ClickControl lblDate51: End Sub
+
 Private Sub lblDate52_Click(): ClickControl lblDate52: End Sub
 Private Sub lblDate53_Click(): ClickControl lblDate53: End Sub
+
 Private Sub lblDate54_Click(): ClickControl lblDate54: End Sub
 Private Sub lblDate55_Click(): ClickControl lblDate55: End Sub
+
 Private Sub lblDate56_Click(): ClickControl lblDate56: End Sub
 Private Sub lblDate57_Click(): ClickControl lblDate57: End Sub
+
 Private Sub lblDate61_Click(): ClickControl lblDate61: End Sub
 Private Sub lblDate62_Click(): ClickControl lblDate62: End Sub
+
 Private Sub lblDate63_Click(): ClickControl lblDate63: End Sub
 Private Sub lblDate64_Click(): ClickControl lblDate64: End Sub
+
 Private Sub lblDate65_Click(): ClickControl lblDate65: End Sub
 Private Sub lblDate66_Click(): ClickControl lblDate66: End Sub
+
 Private Sub lblDate67_Click(): ClickControl lblDate67: End Sub
 
 
@@ -1569,89 +1597,131 @@ Private Sub lblDate67_Click(): ClickControl lblDate67: End Sub
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 'User hovered over the date background
 Private Sub bgDate11_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate11: End Sub
+
 Private Sub bgDate12_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate12: End Sub
 Private Sub bgDate13_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate13: End Sub
+
 Private Sub bgDate14_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate14: End Sub
 Private Sub bgDate15_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate15: End Sub
+
 Private Sub bgDate16_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate16: End Sub
 Private Sub bgDate17_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate17: End Sub
+
 Private Sub bgDate21_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate21: End Sub
 Private Sub bgDate22_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate22: End Sub
+
 Private Sub bgDate23_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate23: End Sub
 Private Sub bgDate24_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate24: End Sub
+
 Private Sub bgDate25_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate25: End Sub
 Private Sub bgDate26_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate26: End Sub
+
 Private Sub bgDate27_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate27: End Sub
 Private Sub bgDate31_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate31: End Sub
+
 Private Sub bgDate32_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate32: End Sub
 Private Sub bgDate33_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate33: End Sub
+
 Private Sub bgDate34_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate34: End Sub
 Private Sub bgDate35_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate35: End Sub
+
 Private Sub bgDate36_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate36: End Sub
 Private Sub bgDate37_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate37: End Sub
+
 Private Sub bgDate41_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate41: End Sub
 Private Sub bgDate42_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate42: End Sub
+
 Private Sub bgDate43_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate43: End Sub
 Private Sub bgDate44_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate44: End Sub
+
 Private Sub bgDate45_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate45: End Sub
 Private Sub bgDate46_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate46: End Sub
+
 Private Sub bgDate47_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate47: End Sub
 Private Sub bgDate51_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate51: End Sub
+
 Private Sub bgDate52_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate52: End Sub
 Private Sub bgDate53_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate53: End Sub
+
 Private Sub bgDate54_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate54: End Sub
 Private Sub bgDate55_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate55: End Sub
+
 Private Sub bgDate56_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate56: End Sub
 Private Sub bgDate57_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate57: End Sub
+
 Private Sub bgDate61_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate61: End Sub
 Private Sub bgDate62_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate62: End Sub
+
 Private Sub bgDate63_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate63: End Sub
 Private Sub bgDate64_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate64: End Sub
+
 Private Sub bgDate65_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate65: End Sub
 Private Sub bgDate66_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate66: End Sub
+
 Private Sub bgDate67_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate67: End Sub
 'User hovered over the actual date label
 Private Sub lblDate11_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate11: End Sub
+
 Private Sub lblDate12_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate12: End Sub
 Private Sub lblDate13_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate13: End Sub
+
 Private Sub lblDate14_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate14: End Sub
 Private Sub lblDate15_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate15: End Sub
+
 Private Sub lblDate16_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate16: End Sub
 Private Sub lblDate17_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate17: End Sub
+
 Private Sub lblDate21_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate21: End Sub
 Private Sub lblDate22_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate22: End Sub
+
 Private Sub lblDate23_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate23: End Sub
 Private Sub lblDate24_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate24: End Sub
+
 Private Sub lblDate25_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate25: End Sub
 Private Sub lblDate26_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate26: End Sub
+
 Private Sub lblDate27_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate27: End Sub
 Private Sub lblDate31_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate31: End Sub
+
 Private Sub lblDate32_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate32: End Sub
 Private Sub lblDate33_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate33: End Sub
+
 Private Sub lblDate34_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate34: End Sub
 Private Sub lblDate35_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate35: End Sub
+
 Private Sub lblDate36_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate36: End Sub
 Private Sub lblDate37_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate37: End Sub
+
 Private Sub lblDate41_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate41: End Sub
 Private Sub lblDate42_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate42: End Sub
+
 Private Sub lblDate43_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate43: End Sub
 Private Sub lblDate44_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate44: End Sub
+
 Private Sub lblDate45_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate45: End Sub
 Private Sub lblDate46_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate46: End Sub
+
 Private Sub lblDate47_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate47: End Sub
 Private Sub lblDate51_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate51: End Sub
+
 Private Sub lblDate52_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate52: End Sub
 Private Sub lblDate53_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate53: End Sub
+
 Private Sub lblDate54_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate54: End Sub
 Private Sub lblDate55_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate55: End Sub
+
 Private Sub lblDate56_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate56: End Sub
 Private Sub lblDate57_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate57: End Sub
+
 Private Sub lblDate61_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate61: End Sub
 Private Sub lblDate62_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate62: End Sub
+
 Private Sub lblDate63_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate63: End Sub
 Private Sub lblDate64_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate64: End Sub
+
 Private Sub lblDate65_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate65: End Sub
 Private Sub lblDate66_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate66: End Sub
+
 Private Sub lblDate67_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single): HoverControl bgDate67: End Sub
 
 
@@ -1679,17 +1749,18 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
         Me.Controls(HoverControlName).BackColor = HoverControlColor
     End If
 End Sub
+
 Private Sub frameCalendar_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     If HoverControlName <> vbNullString Then
         Me.Controls(HoverControlName).BackColor = HoverControlColor
     End If
 End Sub
+
 Private Sub bgDayLabels_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     If HoverControlName <> vbNullString Then
         Me.Controls(HoverControlName).BackColor = HoverControlColor
     End If
 End Sub
-
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 ' Known Bugs
@@ -1756,3 +1827,4 @@ End Sub
 ' -Add worksheet to explain how to import/export userform
 ' -Add documentation explaining how to use with different date formats
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+

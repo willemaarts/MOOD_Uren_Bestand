@@ -17,11 +17,11 @@ Private Sub NAWemp()
 
     Dim Foundcell As Range
 
-    L1 = Range("F3").value                       'Onthoud de naam van de medewerker
+    L1 = Range("F3").value                                 'Onthoud de naam van de medewerker
 
     Sheets("DataEmp").Select
     
-    Set Foundcell = Range("A:A").Find(What:=L1)  'Zoekt de naam in het werknemersblad
+    Set Foundcell = Range("A:A").Find(What:=L1)            'Zoekt de naam in het werknemersblad
     If Not Foundcell Is Nothing Then
         'MsgBox (L1 & " Found in row: " & FoundCell.Row)
     Else
@@ -29,11 +29,11 @@ Private Sub NAWemp()
         Exit Sub
     End If
 
-    L2 = Cells(Foundcell.Row, 1).value           'Noteert de naam van de medewerker
-    L3 = Cells(Foundcell.Row, 2).value           'Noteert het telefoonnummer
-    L4 = Cells(Foundcell.Row, 3).value           'noteert het email adres
+    L2 = Cells(Foundcell.Row, 1).value                     'Noteert de naam van de medewerker
+    L3 = Cells(Foundcell.Row, 2).value                     'Noteert het telefoonnummer
+    L4 = Cells(Foundcell.Row, 3).value                     'noteert het email adres
 
-    C1 = Cells(Foundcell.Row, 11).value          'noteert de vestiging
+    C1 = Cells(Foundcell.Row, 11).value                    'noteert de vestiging
 
     If C1 = "Mood Eindhoven" Then
         C2 = "Eindhoven@mood.nl"
@@ -65,3 +65,4 @@ Private Sub NAWemp()
     Range("F8").value = C2
 
 End Sub
+

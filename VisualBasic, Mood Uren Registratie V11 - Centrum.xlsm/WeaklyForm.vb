@@ -138,7 +138,7 @@ Private Sub CmdEnt_Click()
     End With
     Debug.Print Err.Number
     
-    If Err.Number > 0 Then '1004
+    If Err.Number > 0 Then                                 '1004
         Selection.Formula = "=IFERROR(SUM(AE2:AE" & emptyRow - 1 & ");1)" '\\Change last '1' to other value for better errorhandler for user
     End If
 
@@ -165,7 +165,7 @@ Private Sub CmdEnt_Click()
         .NumberFormat = "0.00"
     End With
 
-    Tt2 = ActiveCell.Offset(0, 1).value                                '\\ Totaal fooi
+    Tt2 = ActiveCell.Offset(0, 1).value                    '\\ Totaal fooi
 
     With Range("AF2")
         .FormulaR1C1 = "=RC[-1]*R2C33"                     '\\Berekening van Fooi (AG2 met vaste waarden)
@@ -291,4 +291,5 @@ Private Sub UserForm_Initialize()
     '   YYYY1.ListIndex = 1
 
 End Sub
+
 

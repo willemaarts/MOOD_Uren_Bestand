@@ -175,9 +175,9 @@ Private Sub EmplSearch1_Click()
 
     Sheets("DataEmp").Select
 
-    L1 = EmpName1.value                          'Onthoud de naam van de medewerker
+    L1 = EmpName1.value                                    'Onthoud de naam van de medewerker
 
-    Set Foundcell = Range("A:A").Find(What:=L1)  'Zoekt de naam in het werknemersblad
+    Set Foundcell = Range("A:A").Find(What:=L1)            'Zoekt de naam in het werknemersblad
     If Not Foundcell Is Nothing Then
         'MsgBox (L1 & " Found in row: " & FoundCell.Row)
     Else
@@ -186,33 +186,33 @@ Private Sub EmplSearch1_Click()
         Exit Sub
     End If
 
-    TextBox3.value = Cells(Foundcell.Row, 1).value 'Noteert de naam van de medewerker
-    TextBox2.value = Cells(Foundcell.Row, 2).value 'Noteert het telefoonnummer
-    TextBox1.value = Cells(Foundcell.Row, 3).value 'noteert het email adres
-    TextBox5.value = Cells(Foundcell.Row, 9).value 'Noteert de geboortedatum
-    TextBox6.value = Cells(Foundcell.Row, 10).value 'Noteert de loon
-    ComboBox4.value = Cells(Foundcell.Row, 11).value 'Noteert de vestiging
+    TextBox3.value = Cells(Foundcell.Row, 1).value         'Noteert de naam van de medewerker
+    TextBox2.value = Cells(Foundcell.Row, 2).value         'Noteert het telefoonnummer
+    TextBox1.value = Cells(Foundcell.Row, 3).value         'noteert het email adres
+    TextBox5.value = Cells(Foundcell.Row, 9).value         'Noteert de geboortedatum
+    TextBox6.value = Cells(Foundcell.Row, 10).value        'Noteert de loon
+    ComboBox4.value = Cells(Foundcell.Row, 11).value       'Noteert de vestiging
 
-    If Cells(Foundcell.Row, 4).value = "Ja" Then 'Wanneer de medewerker een shirt heeft
-        CheckBox1.value = True                   'Wordt de checkbox aangevinkt
+    If Cells(Foundcell.Row, 4).value = "Ja" Then           'Wanneer de medewerker een shirt heeft
+        CheckBox1.value = True                             'Wordt de checkbox aangevinkt
     Else
         CheckBox1.value = False
     End If
 
-    If Cells(Foundcell.Row, 6).value = "Gelezen" Then 'Zelfde als bij shirt maar nu
-        CheckBox2.value = True                   'bij voorschrift
+    If Cells(Foundcell.Row, 6).value = "Gelezen" Then      'Zelfde als bij shirt maar nu
+        CheckBox2.value = True                             'bij voorschrift
     Else
         CheckBox2.value = False
     End If
     
-    ComboBox2.value = Cells(Foundcell.Row, 5).value 'Noteert het aantal shirts
+    ComboBox2.value = Cells(Foundcell.Row, 5).value        'Noteert het aantal shirts
     
-    ComboBox3.value = Cells(Foundcell.Row, 7).value 'Noteert het soort contract
+    ComboBox3.value = Cells(Foundcell.Row, 7).value        'Noteert het soort contract
     
-    TextBox4.value = Cells(Foundcell.Row, 8).value 'Noteert de eventuele opmerking
+    TextBox4.value = Cells(Foundcell.Row, 8).value         'Noteert de eventuele opmerking
     
-    If CheckBox1.value = False Then              'Wanneer er geen shirt is uitgeleend, gaat het aantal
-        ComboBox2.value = "0"                    'shirt automatisch op "0"
+    If CheckBox1.value = False Then                        'Wanneer er geen shirt is uitgeleend, gaat het aantal
+        ComboBox2.value = "0"                              'shirt automatisch op "0"
     End If
 
     Sheets("INDEX").Select
@@ -220,8 +220,8 @@ Private Sub EmplSearch1_Click()
     Dateperiod1.Enabled = True
     Change1.Enabled = True
 
-    Range("C7").value = L1                       'Zet de naam van de medewerker op het hoofdblad zodat wanneer
-    With Application                             'je de datum wilt opzoeken dat dan de naam bekend is.
+    Range("C7").value = L1                                 'Zet de naam van de medewerker op het hoofdblad zodat wanneer
+    With Application                                       'je de datum wilt opzoeken dat dan de naam bekend is.
         .ScreenUpdating = True
         .DisplayAlerts = True
     End With
@@ -248,9 +248,9 @@ Private Sub Change1_Click()
 
     Sheets("DataEmp").Select
 
-    L1 = EmpName1.value                          'noteert de naam van de medewerker
+    L1 = EmpName1.value                                    'noteert de naam van de medewerker
 
-    Set Foundcell = Range("A:A").Find(What:=L1)  'Zoekt de medewerker op in het medewerkersblad
+    Set Foundcell = Range("A:A").Find(What:=L1)            'Zoekt de medewerker op in het medewerkersblad
     If Not Foundcell Is Nothing Then
         'MsgBox (L1 & " Found in row: " & FoundCell.Row)
     Else
@@ -259,36 +259,36 @@ Private Sub Change1_Click()
         Exit Sub
     End If
 
-    Cells(Foundcell.Row, 1).value = TextBox3.value 'Veranderd de naam van de medewerker
-    Cells(Foundcell.Row, 2).value = TextBox2.value 'Veranderd het telefoon nummer
-    Cells(Foundcell.Row, 3).value = TextBox1.value 'veranderd het email adres
-    Cells(Foundcell.Row, 9).value = TextBox5.value 'Veranderd het geboorte datum
-    Cells(Foundcell.Row, 10).value = TextBox6.value 'veranderd het loon
-    Cells(Foundcell.Row, 11).value = ComboBox4.value 'veranderd de vestiging
+    Cells(Foundcell.Row, 1).value = TextBox3.value         'Veranderd de naam van de medewerker
+    Cells(Foundcell.Row, 2).value = TextBox2.value         'Veranderd het telefoon nummer
+    Cells(Foundcell.Row, 3).value = TextBox1.value         'veranderd het email adres
+    Cells(Foundcell.Row, 9).value = TextBox5.value         'Veranderd het geboorte datum
+    Cells(Foundcell.Row, 10).value = TextBox6.value        'veranderd het loon
+    Cells(Foundcell.Row, 11).value = ComboBox4.value       'veranderd de vestiging
 
-    If CheckBox1.value = True Then               'Wanneer de checkbox is aangevinkt veranderd de cel
-        Cells(Foundcell.Row, 4).value = "Ja"     'naar ja!
+    If CheckBox1.value = True Then                         'Wanneer de checkbox is aangevinkt veranderd de cel
+        Cells(Foundcell.Row, 4).value = "Ja"               'naar ja!
     Else
         Cells(Foundcell.Row, 4).value = "Nee"
     End If
 
-    If CheckBox2.value = True Then               'zelfde als shirt, maar dan met voorschrift
+    If CheckBox2.value = True Then                         'zelfde als shirt, maar dan met voorschrift
         Cells(Foundcell.Row, 6).value = "Gelezen"
     Else
         Cells(Foundcell.Row, 6).value = "Nee"
     End If
 
-    Cells(Foundcell.Row, 5).value = ComboBox2.value 'veranderd aantal shirts
+    Cells(Foundcell.Row, 5).value = ComboBox2.value        'veranderd aantal shirts
     
-    Cells(Foundcell.Row, 7).value = ComboBox3.value 'veranderd soort contract
+    Cells(Foundcell.Row, 7).value = ComboBox3.value        'veranderd soort contract
     
-    Cells(Foundcell.Row, 8).value = TextBox4.value 'veranderd eventuele opmerking
+    Cells(Foundcell.Row, 8).value = TextBox4.value         'veranderd eventuele opmerking
     
     Range("I1").Select
 
     Sheets("INDEX").Select
 
-    Range("C7").value = L1                       'noteert de naam op het voorblad
+    Range("C7").value = L1                                 'noteert de naam op het voorblad
 
     With Application
         .ScreenUpdating = True
@@ -311,16 +311,16 @@ Private Sub UserForm_Initialize()
         ResizeUserForm Me
     #End If
 
-    Sheets("DataEmp").Select                     'Kijkt hoeveel medewerkers er zijn
+    Sheets("DataEmp").Select                               'Kijkt hoeveel medewerkers er zijn
     n = Cells(1, 1).End(xlDown).Row
 
-    For Each c In Sheets("DataEmp").Range("A2:A" & n) 'Zet alle namen in de combobox
+    For Each c In Sheets("DataEmp").Range("A2:A" & n)      'Zet alle namen in de combobox
         Me.EmpName1.AddItem c.value
     Next
 
     Sheets("INDEX").Select
 
-    For X = 1 To 10                              'dit is voor het aantal shirts
+    For X = 1 To 10                                        'dit is voor het aantal shirts
         Me.ComboBox2.AddItem X
     Next
 
@@ -339,4 +339,5 @@ Private Sub UserForm_Initialize()
     Dateperiod1.Enabled = False
     
 End Sub
+
 

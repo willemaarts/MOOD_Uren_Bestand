@@ -17,7 +17,7 @@ Option Explicit
 
 Private Sub ComboBox1_Change()
 
-    If ComboBox1.value = "Ja" Then               'wanneer er shirts in bruikleen zijn, dan komt
+    If ComboBox1.value = "Ja" Then                         'wanneer er shirts in bruikleen zijn, dan komt
         Label12.Left = 150
     End If
     
@@ -41,26 +41,26 @@ Private Sub CommandButton2_Click()
     End If
 
     Sheets("DataEmp").Select
-    emptyRow = WorksheetFunction.CountA(Range("A:A")) + 1 'pakt de onderste vrije regel
+    emptyRow = WorksheetFunction.CountA(Range("A:A")) + 1  'pakt de onderste vrije regel
 
-    Cells(emptyRow, 1).value = TextBox1.value    'Noteert de naam
-    Cells(emptyRow, 2).value = TextBox3.value    'noteert het telefoonnummer
-    Cells(emptyRow, 3).value = TextBox2.value    'noteert het emailadres
-    Cells(emptyRow, 4).value = ComboBox1.value   'noteert of ze een shirt hebben
-    Cells(emptyRow, 5).value = ComboBox2.value   'noteert het aantal shirts
-    Cells(emptyRow, 6).value = ComboBox3.value   'noteert voorschrift
-    Cells(emptyRow, 7).value = ComboBox4.value   'noteert soort contract
-    Cells(emptyRow, 9).value = TextBox6.value    'noteert geboortedatum
-    Cells(emptyRow, 10).value = TextBox7.value   'noteert loon
-    Cells(emptyRow, 11).value = ComboBox5.value  'noteert vestiging
+    Cells(emptyRow, 1).value = TextBox1.value              'Noteert de naam
+    Cells(emptyRow, 2).value = TextBox3.value              'noteert het telefoonnummer
+    Cells(emptyRow, 3).value = TextBox2.value              'noteert het emailadres
+    Cells(emptyRow, 4).value = ComboBox1.value             'noteert of ze een shirt hebben
+    Cells(emptyRow, 5).value = ComboBox2.value             'noteert het aantal shirts
+    Cells(emptyRow, 6).value = ComboBox3.value             'noteert voorschrift
+    Cells(emptyRow, 7).value = ComboBox4.value             'noteert soort contract
+    Cells(emptyRow, 9).value = TextBox6.value              'noteert geboortedatum
+    Cells(emptyRow, 10).value = TextBox7.value             'noteert loon
+    Cells(emptyRow, 11).value = ComboBox5.value            'noteert vestiging
 
     Cells(emptyRow, 9).NumberFormat = "m/d/yyyy"
     Cells(emptyRow, 10).Style = "Currency"
 
     Sheets("DataStr").Select
-    emptyRow = WorksheetFunction.CountA(Range("A:A")) + 1 'pakt de onderste vrije regel
-    Cells(emptyRow, 1).value = TextBox1.value    'Noteert de naam
-    Cells(emptyRow, 2).value = ComboBox5.value   'noteert vestiging
+    emptyRow = WorksheetFunction.CountA(Range("A:A")) + 1  'pakt de onderste vrije regel
+    Cells(emptyRow, 1).value = TextBox1.value              'Noteert de naam
+    Cells(emptyRow, 2).value = ComboBox5.value             'noteert vestiging
 
     Sheets("INDEX").Select
 
