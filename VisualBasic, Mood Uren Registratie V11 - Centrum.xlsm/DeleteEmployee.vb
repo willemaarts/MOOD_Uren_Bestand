@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} DeleteEmployee 
    Caption         =   "Delete Employee"
-   ClientHeight    =   2805
+   ClientHeight    =   2265
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4650
@@ -23,7 +23,8 @@ Private Sub EmplDelete1_Click()
     Dim answer As String
     Dim Foundcell As Range
     Dim E1 As Variant, E2 As Variant
-    
+    Dim emptyRow As Long
+
     If EmpName1.value = "" Then Exit Sub
     
     answer = MsgBox("Do you want to delete employee;" & vbNewLine & vbNewLine & EmpName1.value & vbNewLine & vbNewLine & " From the Excel file?", _
@@ -68,7 +69,7 @@ Private Sub EmplDelete1_Click()
         .Caption = "Sheet; DataStr | " & EmpName1.value
     End With
     
-    '\\ Find employee in DataStr sheet
+    '\\ Find employee in DataEmp sheet
     Sheets("DataEmp").Select
     
     Set Foundcell = Range("A:A").Find(What:=EmpName1)
@@ -89,6 +90,7 @@ Private Sub EmplDelete1_Click()
         .Caption = "Sheet; DataEmp | " & EmpName1.value
     End With
     
+    '\\ Double check is employee is really there and can be deleted.
     Sheets("INDEX").Select
     
     If CheckBox1.value And CheckBox2.value = True Then
@@ -99,16 +101,54 @@ Private Sub EmplDelete1_Click()
         Exit Sub
     End If
     
-    '\\ Start deleting proces HERE
-    '\\ Look for idea for archiving data from the deleted employee
+    '\\ Start deleting & Archive proces HERE
+    With Sheets("DataArchive")
+        .Visible = True                                    'xlVeryHidden
+        .Select
+    End With
+
+    emptyRow = WorksheetFunction.CountA(Range("A:A")) + 1  'pakt de onderste vrije regel
     
+    '\\ Copies data to Archive sheet
+    Sheets("DataArchive").Rows(emptyRow + 1).value = Sheets("DataStr").Rows(E1).value
+    Sheets("DataArchive").Rows(emptyRow).value = Sheets("DataEmp").Rows(E2).value
     
+    '\\ Delete Employee data
+    Sheets("DataStr").Rows(E1).Delete
+    Sheets("DataEmp").Rows(E2).Delete
+    
+    Debug.Print EmpName1.value & "; Deleted"
+    
+    'Me.Height = 142
+    'Label2.Caption = EmpName1.value & "; has been archived and removed from the file."
+    MsgBox EmpName1.value & "; has been archived and removed from the file."
+
+    '\\ Turn screenupdating & displayalets on
     Application.Run ("Global_Var.Application_On")
+    With Me
+        .CheckBox1.value = False
+        .CheckBox2.value = False
+    End With
     
+    Sheets("DataArchive").Visible = xlVeryHidden
+    Sheets("INDEX").Select
+    
+    Unload Me
+    DeleteEmployee.Show
+        
 End Sub
 
 Private Sub EmpName1_Change()
-    EmplDelete1.Enabled = True
+
+    If EmpName1.value = "" Then
+        EmplDelete1.Enabled = False
+    Else
+        EmplDelete1.Enabled = True
+    End If
+    
+    Me.Height = 124
+    Label2.Caption = ""
+
 End Sub
 
 Private Sub UserForm_Initialize()
@@ -122,6 +162,7 @@ Private Sub UserForm_Initialize()
     With Me
         .CheckBox1.value = False
         .CheckBox2.value = False
+        .Height = 124
     End With
 
     Sheets("DataEmp").Select                               'Kijkt hoeveel medewerkers er zijn
@@ -134,6 +175,8 @@ Private Sub UserForm_Initialize()
     Sheets("INDEX").Select
     
     EmplDelete1.Enabled = False
+    
+    Label2.Caption = ""
     
 End Sub
 

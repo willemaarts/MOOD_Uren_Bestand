@@ -67,6 +67,10 @@ Sub GoToINDEX()
     Case "INDEX"
         Debug.Print "INDEX - Click"
         Sheets("INDEX").Select
+        
+    Case "DataArchive"
+        Debug.Print "DataArchive - Click"
+        Sheets("INDEX").Select
 
     Case "TEMP-WEAKLY"
         Debug.Print "TEMP-WEAKLY - Click"

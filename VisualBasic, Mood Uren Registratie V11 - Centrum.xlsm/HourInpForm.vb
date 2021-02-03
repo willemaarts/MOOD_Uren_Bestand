@@ -338,6 +338,8 @@ Private Sub UserForm_Initialize()
     #If Mac Then
         ResizeUserForm Me
     #End If
+    
+    Application.Run ("Global_Var.Application_Off")
 
     A4 = Format(A4.value, "hh:mm")
     B4 = Format(A4.value, "hh:mm")
@@ -557,6 +559,8 @@ Private Sub UserForm_Initialize()
             End If
         End If
     Next ctrl
+    
+    Application.Run ("Global_Var.Application_On")
     
 End Sub
 

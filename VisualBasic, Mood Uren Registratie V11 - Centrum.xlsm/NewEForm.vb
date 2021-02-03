@@ -39,6 +39,8 @@ Private Sub CommandButton2_Click()
         MsgBox "Geen vestiging gekozen"
         Exit Sub
     End If
+    
+    Application.Run ("Global_Var.Application_Off")
 
     Sheets("DataEmp").Select
     emptyRow = WorksheetFunction.CountA(Range("A:A")) + 1  'pakt de onderste vrije regel
@@ -63,6 +65,8 @@ Private Sub CommandButton2_Click()
     Cells(emptyRow, 2).value = ComboBox5.value             'noteert vestiging
 
     Sheets("INDEX").Select
+    
+    Application.Run ("Global_Var.Application_On")
 
     MsgBox "Nieuwe medewerker genoteerd; " & TextBox1.value
     
