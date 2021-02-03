@@ -35,7 +35,7 @@ Private Sub LoginButton1_Click()
             Range("B15").value = "Mood Eindhoven, Tim de Roos"
             Sheets("ADMIN").Range("B7").value = "Tim de Roos"
             Sheets("ADMIN").Range("B9").value = myDate
-            For X = 1 To 4
+            For X = 1 To 5
                 'Debug.Print X
                 ActiveSheet.Shapes.Range(Array("Menu" & X)).Visible = True
             Next
@@ -50,7 +50,7 @@ Private Sub LoginButton1_Click()
             Range("B15").value = "Mood Eindhoven, Willem Aarts"
             Sheets("ADMIN").Range("B7").value = "Willem Aarts"
             Sheets("ADMIN").Range("B9").value = myDate
-            For X = 1 To 4
+            For X = 1 To 5
                 'Debug.Print X
                 ActiveSheet.Shapes.Range(Array("Menu" & X)).Visible = True
             Next
@@ -66,7 +66,7 @@ Private Sub LoginButton1_Click()
             Range("B15").value = "Mood Streetfood, User"
             Sheets("ADMIN").Range("B7").value = "User"
             Sheets("ADMIN").Range("B9").value = myDate
-            For X = 1 To 4
+            For X = 1 To 5
                 'Debug.Print X
                 ActiveSheet.Shapes.Range(Array("Menu" & X)).Visible = True
             Next
@@ -118,4 +118,3 @@ Private Sub UserForm_Initialize()
     Label5.ForeColor = &HFFFFFF
 
 End Sub
-
