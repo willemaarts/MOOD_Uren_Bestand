@@ -22,6 +22,10 @@ Private Sub MenuOnClick()
     Case "Menu4"
         Debug.Print "Menu4 - WeaklyClick"
         WeaklyForm.Show
+    
+    Case "Menu5"
+        Debug.Print "Menu5 - WeaklyClick"
+        DeleteEmployee.Show
 
     Case "Login"
         Debug.Print "Login - LoginClick"

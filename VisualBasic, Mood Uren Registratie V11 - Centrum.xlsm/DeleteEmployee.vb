@@ -124,7 +124,6 @@ Private Sub EmplDelete1_Click()
     MsgBox EmpName1.value & "; has been archived and removed from the file."
 
     '\\ Turn screenupdating & displayalets on
-    Application.Run ("Global_Var.Application_On")
     With Me
         .CheckBox1.value = False
         .CheckBox2.value = False
@@ -132,6 +131,8 @@ Private Sub EmplDelete1_Click()
     
     Sheets("DataArchive").Visible = xlVeryHidden
     Sheets("INDEX").Select
+    
+    Application.Run ("Global_Var.Application_On")
     
     Unload Me
     DeleteEmployee.Show
@@ -158,6 +159,8 @@ Private Sub UserForm_Initialize()
     #If Mac Then
         ResizeUserForm Me
     #End If
+    
+    Application.Run ("Global_Var.Application_Off")
 
     With Me
         .CheckBox1.value = False
@@ -177,6 +180,8 @@ Private Sub UserForm_Initialize()
     EmplDelete1.Enabled = False
     
     Label2.Caption = ""
+    
+    Application.Run ("Global_Var.Application_On")
     
 End Sub
 
