@@ -79,6 +79,18 @@ Sub GoToINDEX()
     Case "TEMP-WEAKLY"
         Debug.Print "TEMP-WEAKLY - Click"
         Columns("A:M").ClearContents
+        
+        Application.ScreenUpdating = False
+        Columns("A:M").Select
+        With Selection
+            .Borders(xlEdgeLeft).LineStyle = xlNone
+            .Borders(xlEdgeTop).LineStyle = xlNone
+            .Borders(xlEdgeBottom).LineStyle = xlNone
+            .Borders(xlEdgeRight).LineStyle = xlNone
+        End With
+        Range("A1").Select
+        Application.ScreenUpdating = True
+        
         Sheets("INDEX").Select
 
     Case Else

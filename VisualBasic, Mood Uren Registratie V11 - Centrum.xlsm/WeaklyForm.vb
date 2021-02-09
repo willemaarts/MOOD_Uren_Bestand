@@ -225,8 +225,25 @@ Private Sub CmdEnt_Click()
     'TODO Error handling toevoegen
     '\\ Error handling toevoegen
     [1:200].value = [1:200].value
-
+    
     Sheets("WEAKLYTEMP").Delete                            '\\ Comment verwijderen wanneer kan
+    
+    Range("B1:M" & emptyRow + 1).BorderAround LineStyle:=xlContinuous, Weight:=xlMedium '\\ Thick border on whole tabel
+
+    With Range("B1:M1").Borders(xlEdgeBottom)              '\\ Thin line Below first row
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    
+    With Range("B2:B" & emptyRow + 1).Borders(xlEdgeRight) '\\ Thin line after names
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+
+    With Range("B" & emptyRow & ":M" & emptyRow).Borders(xlEdgeBottom) '\\ Thin line Below first row
+        .LineStyle = xlDouble
+        .Weight = xlThick
+    End With
     
     With Application
         .ScreenUpdating = True
