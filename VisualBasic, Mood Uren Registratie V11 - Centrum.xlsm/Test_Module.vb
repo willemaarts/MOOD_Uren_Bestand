@@ -30,7 +30,7 @@ Private Sub Test_EmptyRow_HideEmployee()
 
 End Sub
 
-Private Sub test()
+Private Sub Test_WAARDE_Error()
     If ActiveCell.value = CVErr(xlErrValue) Then
         Debug.Print "Error; #WAARDE!"
         MsgBox "A #WAARDE! error has occurred. Please contact the administrator"

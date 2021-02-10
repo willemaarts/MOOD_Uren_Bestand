@@ -101,7 +101,7 @@ Private Sub EmplDelete1_Click()
         Exit Sub
     End If
     
-    '\\ Start deleting & Archive proces HERE
+    '\\ Start deleting & Archive process
     With Sheets("DataArchive")
         .Visible = True                                    'xlVeryHidden
         .Select

@@ -129,7 +129,6 @@ Private Sub CmdEnt_Click()
 
     Range("AE" & emptyRow + 1).Select
 
-    '|||||||||||||||||||||||||||||||||| ERROR FUNCTIE KLAAR||||||||||||||||||||||||
     On Error GoTo 0
     
     On Error Resume Next
@@ -146,8 +145,6 @@ Private Sub CmdEnt_Click()
     
     On Error GoTo 0
     Debug.Print Err.Number
-    '|||||||||||||||||||||||||||||||||| ERROR FUNCTIE KLAAR||||||||||||||||||||||||
-
 
     If ActiveCell.value = "0" Then                         '\\Total Hour Worked
         P1 = "00.0000001"
@@ -222,11 +219,11 @@ Private Sub CmdEnt_Click()
     Selection.NumberFormat = "General"
     
     Range("A1").Select
-    'TODO Error handling toevoegen
-    '\\ Error handling toevoegen
-    [1:200].value = [1:200].value
     
-    Sheets("WEAKLYTEMP").Delete                            '\\ Comment verwijderen wanneer kan
+    On Error GoTo Error_Value
+    [1:200].value = [1:200].value                          '\\ Maakt harde waarden
+    
+    Sheets("WEAKLYTEMP").Delete
     
     Range("B1:M" & emptyRow + 1).BorderAround LineStyle:=xlContinuous, Weight:=xlMedium '\\ Thick border on whole tabel
 

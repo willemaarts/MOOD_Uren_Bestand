@@ -88,12 +88,14 @@ Sub GoToINDEX()
         
     Case Else
         Debug.Print Shn & "; Deleted."
+        Application.ScreenUpdating = False
         ActiveWindow.SelectedSheets.Delete
         Sheets("INDEX").Select
-
+        Application.ScreenUpdating = True
+        
     End Select
 
-    Application.DisplayAlerts = False
+    Application.DisplayAlerts = True
 
 End Sub
 
@@ -137,11 +139,14 @@ End Sub
 
 Sub ADMIN()
     'CNTR + SHIFT + Q
+    
+    Application.ScreenUpdating = False
     With ActiveWindow
         .DisplayHeadings = False
         .DisplayWorkbookTabs = True
         .DisplayHorizontalScrollBar = False
     End With
+    Application.ScreenUpdating = True
 
 End Sub
 

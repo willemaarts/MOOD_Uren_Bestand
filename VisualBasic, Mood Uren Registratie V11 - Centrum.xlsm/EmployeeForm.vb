@@ -105,7 +105,8 @@ Private Sub Dateperiod1_Click()
     Range("A2").Select
     
     ActiveCell.Formula = SelRange                          'zet de formule in de cell naar de verwijzing van de orginele tijden
-    'TODO Error functie toevoegen
+    
+    On Error Resume Next
     Range("A2").Select                                     'Komt opeens een '@' in de formule staan en dit zorgt ervoor dat die weg gaat
     ActiveCell.Replace What:="@", Replacement:="", LookAt:=xlPart, _
                        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
@@ -126,7 +127,8 @@ Private Sub Dateperiod1_Click()
     Range("A1").Select
    
     ActiveCell.Formula = SelRange                          'zet de formule in de cell naar de verwijzing van de orginele tijden
-    'TODO errorfunction toevoegen
+    
+    On Error Resume Next
     Range("A1").Select                                     'Komt opeens een '@' in de formule staan en dit zorgt ervoor dat die weg gaat
     ActiveCell.Replace What:="@", Replacement:="", LookAt:=xlPart, _
                        SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, _
