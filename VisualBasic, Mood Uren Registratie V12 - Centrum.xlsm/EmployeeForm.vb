@@ -159,6 +159,8 @@ Private Sub Dateperiod1_Click()
     Range("F3").Select
     Application.Run ("HourOverview.NAWemp")                'gaat de NAW gegevens ophalen
     
+    
+    
     With Application
         .ScreenUpdating = True
         .DisplayAlerts = True

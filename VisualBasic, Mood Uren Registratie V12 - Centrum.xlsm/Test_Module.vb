@@ -37,8 +37,8 @@ Private Sub Test_WAARDE_Error()
     End If
 End Sub
 
-Sub test()
+Private Sub test()
 
-    
+    ActiveCell.value = CVErr(xlErrValue)
 
 End Sub
