@@ -28,7 +28,6 @@ Private Sub Test_EmptyRow_HideEmployee()
 
     Application.ScreenUpdating = True
 
-    '!! ook nog verzinnen als je weg gaat uit de sheet, dat dan de rijen weer zicht baar worden
 End Sub
 
 Private Sub Test_WAARDE_Error()
@@ -38,3 +37,8 @@ Private Sub Test_WAARDE_Error()
     End If
 End Sub
 
+Sub test()
+
+    
+
+End Sub

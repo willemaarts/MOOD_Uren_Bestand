@@ -65,38 +65,4 @@ Private Sub NAWemp()
     Range("F8").value = C2
 
 End Sub
-'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-Sub testsub
-Dim x as long
 
-    L2 = Cells(Foundcell.Row, 1).value                     'Noteert de naam van de medewerker
-    L3 = Cells(Foundcell.Row, 2).value                     'Noteert het telefoonnummer
-    L4 = Cells(Foundcell.Row, 3).value                     'noteert het email adres
-
-    C1 = Cells(Foundcell.Row, 11).value                    'noteert de vestiging
-
-    If C1 = "Mood Eindhoven" Then
-        C2 = "Eindhoven@mood.nl"
-        
-    ElseIf C1 = "Mood Eindhoven - Keuken" Then
-        C2 = "Eindhoven@mood.nl"
-        
-    ElseIf C1 = "Mood Strijp-s" Then
-        C2 = "strijps@mood.nl"
-
-    ElseIf C1 = "Mood Strijp-s - Keuken" Then
-        C2 = "strijps@mood.nl"
-
-    ElseIf C1 = "Mood Streetfood" Then
-        C2 = "Streetfood@mood.nl"
-        
-    ElseIf C1 = "Mood Streetfood - Keuken" Then
-        C2 = "Streetfood@mood.nl"
-        
-    Else
-        MsgBox "Vestiging verkeerd"
-    End If
-    
-    Sheets(L1).Select
-
-End Sub
